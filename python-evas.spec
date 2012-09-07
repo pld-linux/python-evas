@@ -1,24 +1,23 @@
 Summary:	Python bindings for Evas library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki Evas
 Name:		python-evas
-Version:	0.7.3
+Version:	1.7.0
 Release:	1
 License:	LGPL v2.1+
 Group:		Development/Languages/Python
 Source0:	http://download.enlightenment.org/releases/BINDINGS/python/%{name}-%{version}.tar.bz2
-# Source0-md5:	5dc6ef5a1b5cd3ece27e6f6f96f46f42
-Patch0:		%{name}-cython.patch
+# Source0-md5:	c3fda2025171f5e3d2bc224e8bae88e5
 URL:		http://trac.enlightenment.org/e/wiki/Python
-BuildRequires:	eina-devel >= 1.0.0
+BuildRequires:	eina-devel >= 1.7.0
 BuildRequires:	epydoc
-BuildRequires:	evas-devel >= 1.0.0
-BuildRequires:	python-Cython >= 0.13
-BuildRequires:	python-devel >= 1:2.5
+BuildRequires:	evas-devel >= 1.7.0
+BuildRequires:	python-Cython >= 0.15.1
+BuildRequires:	python-devel >= 1:2.7
 BuildRequires:	rpm-pythonprov
 BuildRequires:	pkgconfig >= 1:0.22
 BuildRequires:	rpmbuild(macros) >= 1.219
-Requires:	eina >= 1.0.0
-Requires:	evas >= 1.0.0
+Requires:	eina >= 1.7.0
+Requires:	evas >= 1.7.0
 Requires:	python-libs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -33,7 +32,7 @@ Summary:	Python bindings for Evas library - development files
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki Evas - pliki programistyczne
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	evas-devel >= 1.0.0
+Requires:	evas-devel >= 1.7.0
 
 %description devel
 Python bindings for Evas library - development files.
@@ -43,7 +42,6 @@ Wiązania Pythona do biblioteki Evas - pliki programistyczne.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %configure \
@@ -71,7 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS README
 %dir %{py_sitedir}/evas
 %attr(755,root,root) %{py_sitedir}/evas/c_evas.so
-%{py_sitescriptdir}/evas
+%{py_sitedir}/evas/*.py[co]
 %{_examplesdir}/%{name}-%{version}
 
 %files devel
